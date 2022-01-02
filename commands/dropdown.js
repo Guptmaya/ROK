@@ -16,12 +16,22 @@ module.exports = {
   async execute(bot, message, args) {
 
 
-    if (message.channel.id !== "919538651195666472" && message.channel.id !== "917158209305858058") {
-      let messageSent = await message.channel.send("Please go to <#919538651195666472> to run this command.");
-      setTimeout(function () {
-        messageSent.delete(1000);
-        return;
-      }, 5000)
+    if (message.guild.id == "710978238200938508") {
+      if ((message.channel.id !== "919538651195666472" && message.channel.id !== "917158209305858058")) {
+        let messageSent = await message.channel.send("Please go to <#919538651195666472> to run this command.");
+        setTimeout(function () {
+          messageSent.delete(1000);
+          return;
+        }, 5000)
+      }
+    } else if (message.guild.id == "926950636937957456") {
+      if ((message.channel.id !== "927019188562849842" && message.channel.id !== "926970586503217202")) {
+        let messageSent = await message.channel.send("Please go to <#926970586503217202> to run this command.");
+        setTimeout(function () {
+          messageSent.delete(1000);
+          return;
+        }, 5000)
+      }
     } else {
 
 

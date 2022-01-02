@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require('fs');
-const logChannel = '917158209305858058';
+let logChannel = '917158209305858058';
 const { Client, Intents } = require('discord.js');
 const bot = new Client({
    disableEveryone: true,
@@ -32,12 +32,22 @@ for (const files of commandFiles) {
 //welcome
 
 bot.on("guildMemberAdd", async (message, member) => {
-   let botChannel = message.guild.channels.cache.find(x => x.id === logChannel);
-   let welcome = message.guild.channels.cache.find(x => x.id === "710978238200938511");
+   let botChannel;
+   let welcome;
+   let M = "";
+   if (message.guild.id === "710978238200938508") {
+      welcome = message.guild.channels.cache.find(x => x.id === "710978238200938511");
+      M = `\*\*Welcome Governor <@${message.user.id}>\*\*` +
+         `\n\n Please wait for an Administrator to give you a role to access the server.\n` +
+         `\nMeanwhile run the command \`r!update-name [Your ROK name]\` to update your name, it makes easier for everyone to identify you. \n`;
+      botChannel = message.guild.channels.cache.find(x => x.id === logChannel);
+   } else {
+      welcome = message.guild.channels.cache.find(x => x.id === "927017382407462924");
+      M = `\*\*Welcome Governor <@${message.user.id}>\*\*` +
+         `\nRun the command \`r!update-name [Your ROK name]\` to update your name, it makes easier for everyone to identify you. \n`;
+      botChannel = message.guild.channels.cache.find(x => x.id === "927019188562849842");
+   }
    let WelcomeEmbed = new Discord.MessageEmbed()
-   let M = `\*\*Welcome Governor <@${message.user.id}>\*\*` +
-      `\n\n Please wait for an Administrator to give you a role to access the server.\n` +
-      `\nMeanwhile run the command \`r!update-name [Your ROK name]\` to update your name, it makes easier for everyone to identify you. \n`;
    WelcomeEmbed.setDescription(M)
    WelcomeEmbed.setColor("RED")
    WelcomeEmbed.setFooter("Please contact an Admin if you have any questions.");
@@ -46,7 +56,12 @@ bot.on("guildMemberAdd", async (message, member) => {
 });
 
 bot.on("guildMemberRemove", async (message, member) => {
-   let botChannel = message.guild.channels.cache.find(x => x.id === logChannel);
+   let botChannel;
+   if (message.guild.id === "710978238200938508") {
+      botChannel = message.guild.channels.cache.find(x => x.id === logChannel);
+   } else {
+      botChannel = message.guild.channels.cache.find(x => x.id === "927019188562849842");
+   }
    botChannel.send(`<@${message.user.id}> left the server.`);
 });
 
@@ -54,9 +69,17 @@ bot.on("guildMemberRemove", async (message, member) => {
 
 //for commands
 bot.on("messageCreate", async message => {
-   //if (message.author.id != "541467870819778562" && message.author.id != "853280361521086476") return;
+   if (message.author.id != "541467870819778562" && message.author.id != "853280361521086476") return;
    let prefix1 = config.prefix1;
    let prefix2 = config.prefix2;
+
+   let botChannel;
+   if (message.guild.id === "710978238200938508") {
+      botChannel = message.guild.channels.cache.find(x => x.id === logChannel);
+   } else {
+      botChannel = message.guild.channels.cache.find(x => x.id === "927019188562849842");
+   }
+
 
    if (message.author.bot) return;
 
@@ -71,16 +94,16 @@ bot.on("messageCreate", async message => {
 
    //test and log channel - 917158209305858058
    // public bot commands channel - 
-  /* if (message.channel.id !== '917158209305858058' && message.channel.id !== '919538651195666472') {
-      if (command.validChannels && (message.channel.name !== command.validChannels)) {
-         let botChannel = message.guild.channels.cache.find(x => x.id === "919538651195666472");
-         let incorrectChannelEmbed = new Discord.MessageEmbed()
-            .setColor("#fefeff")
-            .setDescription(`🕵️ Incorrect Channel.\n Head over to <#${botChannel}>`)
-         return message.channel.send({ embeds: [incorrectChannelEmbed] });
-      }
-   }
-   */
+   /* if (message.channel.id !== '917158209305858058' && message.channel.id !== '919538651195666472') {
+       if (command.validChannels && (message.channel.name !== command.validChannels)) {
+          let botChannel = message.guild.channels.cache.find(x => x.id === "919538651195666472");
+          let incorrectChannelEmbed = new Discord.MessageEmbed()
+             .setColor("#fefeff")
+             .setDescription(`🕵️ Incorrect Channel.\n Head over to <#${botChannel}>`)
+          return message.channel.send({ embeds: [incorrectChannelEmbed] });
+       }
+    }
+    */
 
 
    //cooldown starts here
@@ -144,8 +167,8 @@ bot.on("messageCreate", async message => {
    }
    catch (error) {
       console.error(error);
-      let botChannelLogs = message.guild.channels.cache.find(x => x.id === logChannel);
-      botChannelLogs.send(error);
+      let botChannel = message.guild.channels.cache.find(x => x.id === logChannel);
+      botChannel.send(error);
       message.reply("Issue executing that command!\n Let Devs know bout this error.")
    }
 });

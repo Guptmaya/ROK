@@ -5,6 +5,8 @@ module.exports = {
   usage: '[ROK Name]',
   args: true,
   async execute(bot, message, args) {
+    if (message) return message.channel.send("This command is under review for having a bug.\n We are trying to fix the bug asap.");
+
     let counter = true;
     if (message.guild.id == "710978238200938508") {
       if ((message.channel.id !== "919538651195666472" && message.channel.id !== "917158209305858058") && message.channel.id !== "710978238200938511") {

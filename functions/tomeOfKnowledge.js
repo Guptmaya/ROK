@@ -1,8 +1,9 @@
 const Discord = require("discord.js")
-async function calculateTomesOfKnowledge(a, b, c, d, e, f, g) {
+const millifyPackage = require("millify")
+async function calculateTOK(a, b, c, d, e, f, g) {
 
-   var points = a * 100 + b * 5000 + c * 1000 + d * 5000 + e * 10000 + f * 20000 + g * 50000;
-
+   var points = a * 100 + b * 500 + c * 1000 + d * 5000 + e * 10000 + f * 20000 + g * 50000;
+   points = millifyPackage.millify(points);
    return points;
 }
-module.exports = { calculateTomesOfKnowledge }
+module.exports = { calculateTOK }

@@ -9,42 +9,16 @@ module.exports = {
   args: false,
   async execute(bot, message, args) {
 
-
-    console.log(message.guild.id);
     let desc = "";
-    if (message.guild.id === "710978238200938508") {
-      desc = `\`${prefix.prefix1}update-name [ROK name]\` : Updates your nickname for server\n\n` +
-        `\`${prefix.prefix1}calc \` : To calculate MGE Points\n\n\n` +
-        `\`${prefix.prefix1}mge-announce [top 15 user's names]\` : Shows Top 15 MGE governors\n\n` +
-        `\`${prefix.prefix1}mge-register \` : Sends message to register for MGE\n\n` +
-        `\`${prefix.prefix1}poll <option1> <option2>...<option10> \` : Creates a poll for given options\n\n`;
-    } else {
-      desc = `\`${prefix.prefix1}update-name [ROK name]\` : Updates your nickname for server\n\n` +
-        `\`${prefix.prefix1}calc \` : To calculate MGE Points\n\n\n`;
-    }
+      desc = `\`${prefix.prefix1}mge \` : Calculates MGE Points\n\n` +
+        //`\`${prefix.prefix1}rss\` : Calculates total resources\n\n` +
+        `\`${prefix.prefix1}ap \` : Calculates total Action Points\n\n` +
+        //`\`${prefix.prefix1}tok \` : Calculates total Tome of Knowledge\n\n` +
+        `\`${prefix.prefix1}event [Event's Name]\` : Gives information about certain event\n\n` +
+        `\`${prefix.prefix1}eventlist \` : Shows the events list for r!event command\n\n`;
+   
 
-    let counter = true;
 
-    if (message.guild.id == "710978238200938508") {
-      if ((message.channel.id !== "919538651195666472" && message.channel.id !== "917158209305858058")) {
-        let messageSent = await message.channel.send("Please go to <#919538651195666472> to run this command.");
-        setTimeout(function () {
-          messageSent.delete(1000);
-          return;
-        }, 5000)
-        counter = false;
-      }
-    } else if (message.guild.id == "926950636937957456") {
-      if ((message.channel.id !== "927019188562849842" && message.channel.id !== "926970586503217202")) {
-        let messageSent = await message.channel.send("Please go to <#926970586503217202> to run this command.");
-        setTimeout(function () {
-          messageSent.delete(1000);
-          return;
-        }, 5000)
-        counter = false;
-      }
-    }
-    if (counter) {
       let footer = `${bot.user.username} | Uta#3963`;
       let embed = new Discord.MessageEmbed()
         .setTitle("[ HELP ]")
@@ -53,6 +27,6 @@ module.exports = {
         .setDescription(desc)
         .setFooter(footer)
       message.channel.send({ embeds: [embed] });
-    }
+    
   },
 };

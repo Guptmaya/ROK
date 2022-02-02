@@ -5,11 +5,12 @@ module.exports = {
   usage: '[option1] [option2] [option3]',
   desciption: 'Poll command',
   async execute(bot, message, args) {
+    if (message.author.id != "541467870819778562") return;
     let footer = `${bot.user.username} | Uta#3963`;
 
     message.delete(1000);    
-    if (!message.member.roles.cache.some(role => role.name === 'COUNCIL')) {
-      let messageSent = await message.channel.send("You need COUNCIL role to run this command.");
+    if (!message.member.roles.cache.some(role => role.name === 'moderator')) {
+      let messageSent = await message.channel.send("You need Moderator role to run this command.");
       setTimeout(function () {
         messageSent.delete(1000);
         return;

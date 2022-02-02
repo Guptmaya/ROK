@@ -29,60 +29,20 @@ for (const files of commandFiles) {
    bot.commands.set(command.name, command);
 }
 
-//welcome
 
-bot.on("guildMemberAdd", async (message, member) => {
-   let botChannel;
-   let welcome;
-   let M = "";
-   if (message.guild.id === "710978238200938508") {
-      welcome = message.guild.channels.cache.find(x => x.id === "710978238200938511");
-      M = `\*\*Welcome Governor <@${message.user.id}>\*\*` +
-         `\n\n Please wait for an Administrator to give you a role to access the server.\n` +
-         `\nMeanwhile run the command \`r!update-name [Your ROK name]\` to update your name, it makes easier for everyone to identify you. \n`;
-      botChannel = message.guild.channels.cache.find(x => x.id === logChannel);
-   } else {
-      welcome = message.guild.channels.cache.find(x => x.id === "927017382407462924");
-      M = `\*\*Welcome Governor <@${message.user.id}>\*\*` +
-         `\nRun the command \`r!update-name [Your ROK name]\` to update your name, it makes easier for everyone to identify you. \n`;
-      botChannel = message.guild.channels.cache.find(x => x.id === "927019188562849842");
-   }
-   let WelcomeEmbed = new Discord.MessageEmbed()
-   WelcomeEmbed.setDescription(M)
-   WelcomeEmbed.setColor("RED")
-   WelcomeEmbed.setFooter("Please contact an Admin if you have any questions.");
-   welcome.send({ embeds: [WelcomeEmbed] });
-   botChannel.send(`<@${message.user.id}> joined the server.`);
-});
-
-bot.on("guildMemberRemove", async (message, member) => {
-   let botChannel;
-   if (message.guild.id === "710978238200938508") {
-      botChannel = message.guild.channels.cache.find(x => x.id === logChannel);
-   } else {
-      botChannel = message.guild.channels.cache.find(x => x.id === "927019188562849842");
-   }
-   botChannel.send(`<@${message.user.id}> left the server.`);
-});
 
 
 
 //for commands
 bot.on("messageCreate", async message => {
-   if (message.author.id != "541467870819778562" && message.author.id != "853280361521086476") return;
+   //if (message.author.id != "541467870819778562") return;
    let prefix1 = config.prefix1;
    let prefix2 = config.prefix2;
 
    let botChannel;
-   if (message.guild.id === "710978238200938508") {
-      botChannel = message.guild.channels.cache.find(x => x.id === logChannel);
-   } else {
-      botChannel = message.guild.channels.cache.find(x => x.id === "927019188562849842");
-   }
-
+   botChannel = message.guild.channels.cache.find(x => x.id === "927019188562849842");
 
    if (message.author.bot) return;
-
    if (!message.content.startsWith(prefix1) && !message.content.startsWith(prefix2)) return;
 
    const args = message.content.slice(prefix1.length).trim().split(/ +/);
@@ -92,19 +52,18 @@ bot.on("messageCreate", async message => {
       || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
    if (!command) return;
 
-   //test and log channel - 917158209305858058
    // public bot commands channel - 
-   /* if (message.channel.id !== '917158209305858058' && message.channel.id !== '919538651195666472') {
-       if (command.validChannels && (message.channel.name !== command.validChannels)) {
-          let botChannel = message.guild.channels.cache.find(x => x.id === "919538651195666472");
-          let incorrectChannelEmbed = new Discord.MessageEmbed()
-             .setColor("#fefeff")
-             .setDescription(`🕵️ Incorrect Channel.\n Head over to <#${botChannel}>`)
-          return message.channel.send({ embeds: [incorrectChannelEmbed] });
-       }
-    }
-    */
-
+   if (message.channel.name !== 'bots') {
+      let botChannel = message.guild.channels.cache.find(x => x.name === "bots");
+      let tempDesc = `Governor please go to <#${botChannel}> channel to run the commands.`;
+      if (!botChannel) {
+         tempDesc = `Governor please go to #bots channel to run the commands.`;
+      }
+      let incorrectChannelEmbed = new Discord.MessageEmbed()
+         .setColor("#fefeff")
+         .setDescription(tempDesc)
+      return message.channel.send({ embeds: [incorrectChannelEmbed] });
+   }
 
    //cooldown starts here
    if (!cooldowns.has(command.name)) {
@@ -169,12 +128,9 @@ bot.on("messageCreate", async message => {
       console.error(error);
       let botChannel = message.guild.channels.cache.find(x => x.id === logChannel);
       botChannel.send(error);
-      message.reply("Issue executing that command!\n Let Devs know bout this error.")
+      message.reply("Issue executing that command!\n Let Uta know bout this error.")
    }
 });
-
-
-
 
 
 bot.login(process.env.token);

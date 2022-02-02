@@ -1,0 +1,23 @@
+{
+   "events": [
+      {
+         "name": "Arms Training",
+         "basicKnowledge" : "Arms Training is an event in which you have to defeat lohar. Every time you defeat Lohar, he will become stronger and unlock a new skill. This new skill will be chosen by you. You will receive 10,000 points for each time you defeat Lohar.\n\n",
+         "howToBeat": " Lohar is an elite barbarian, the damage bonus for barbarians on commander`s skills and gear does not apply to him. Avoid using commanders with bonus damage against barbarians.\n\n",
+         "tips": "\n Try to get these all\n\n Use equipment that has bonus damage\n Army expansion \n Bonus damage item \n Rune \n Scout someone to receive 3% damage \n Kingdom Title \n City skin \n Officer buffs \n Commanders buff \n Be on alliance territory\n\n",
+         "image": "armsTraining.png"
+      },
+      {
+         "name": "spin the wheel",
+         "howToBeat": "In arms training you have to beat the lohar",
+         "tips": "pissedBat.png",
+         "image": "armsTraining.png"
+      },
+      {
+         "name": "shadow legion",
+         "howToBeat": "In arms training you have to beat the lohar",
+         "tips": "pissedBat.png",
+         "image": "armsTraining.png"
+      }
+   ]
+}

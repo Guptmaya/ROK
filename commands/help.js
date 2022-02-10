@@ -11,9 +11,10 @@ module.exports = {
 
     let desc = "";
       desc = `\`${prefix.prefix1}mge \` : Calculates MGE Points\n\n` +
-        //`\`${prefix.prefix1}rss\` : Calculates total resources\n\n` +
-        `\`${prefix.prefix1}ap \` : Calculates total Action Points\n\n` +
-        `\`${prefix.prefix1}tok \` : Calculates total Tome of Knowledge\n\n` +
+        `\`${prefix.prefix1}ap \` : Calculates Total Action Points\n\n` +
+        `\`${prefix.prefix1}tok \` : Calculates Total Tome of Knowledge\n\n` +
+        `\`${prefix.prefix1}rss \` : Calculates Total Resources\n\n` +
+        `\`${prefix.prefix1}gems \` : Calculates Total Gems\n\n` +
         `\`${prefix.prefix1}event [Event's Name]\` : Gives information about certain event\n\n` +
         `\`${prefix.prefix1}eventlist \` : Shows the events list for r!event command\n\n`;
    

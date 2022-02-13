@@ -31,8 +31,9 @@ module.exports = {
 
     //if amount is number calculate AP, run loop
     if (checkInteger.checkNumber(numberOfKeys) === 0) return message.channel.send("\*\*Process Cancelled\*\* : Please mention numerical value for number of gold keys.");
-    if (numberOfKeys > 5000) return message.channel.send("Please enter number of keys less than 5000.");
+    if (numberOfKeys > 1000) return message.channel.send("Please enter number of keys less than 5000.");
     console.log(numberOfKeys)
+    numberOfKeys *= 4;
     let counterArray = new Array(73).fill(0);
     //random value generator
     function getRand(min, max, decimalPlaces) {

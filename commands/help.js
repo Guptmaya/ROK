@@ -16,6 +16,7 @@ module.exports = {
         `\`${prefix.prefix1}rss \` : Calculates Total Resources\n\n` +
         `\`${prefix.prefix1}gems \` : Calculates Total Gems\n\n` +
         `\`${prefix.prefix1}goldchest [number of keys]\` : Simulates Gold Chest unlock\n\n` +
+        `\`${prefix.prefix1}wheel \` : Simulates spinning wheel of fortune\n\n` +
         `\`${prefix.prefix1}event [Event's Name]\` : Gives information about certain event\n\n` +
         `\`${prefix.prefix1}eventlist \` : Shows the events list for r!event command\n\n`;
    

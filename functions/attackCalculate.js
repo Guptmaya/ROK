@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const Levels = require('discord-xp');
 const adh = require("../json/commanders.json")
 const UserProfile = require("../schemas/userProfile")
-async function calculateAdh(mentionedMember, userTarget,message) {
+async function calculateAdh(mentionedMember, userTarget, message) {
    //find which commander user is using
    let whichCommander = "";
    let UserProfileDetails = await UserProfile.findOne({ userID: mentionedMember.id })
@@ -32,8 +32,8 @@ async function calculateAdh(mentionedMember, userTarget,message) {
    const target = await Levels.fetch(mentionedMember.id, message.guild.id);
 
    //total attack and health after level boost addition
-   let totalAttack = attack + (target.level * 5) / 100;
-   let totalHealth = health + (target.level * 2) / 100;
+   let totalAttack = attack + ((attack + target.level) * 5) / 100;
+   let totalHealth = health + ((health + target.level) * 2) / 100;
 
    if (userTarget === "barbarian" && adh.commanders[whichIndex].speciality === "peacekeeper") {
       totalAttack += (totalAttack * 10) / 100;

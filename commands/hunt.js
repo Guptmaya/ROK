@@ -65,6 +65,13 @@ module.exports = {
 
         if (button.customId == '00001101001110') {
           console.log("attacked.");
+          let attacking = new Discord.MessageEmbed()
+            .setTitle("Barbarians")
+            .setColor("GREEN")
+            .setThumbnail(barbImage)
+            .setDescription("Attacking Barbarian...")
+          await curPage.edit({ embeds: [attacking], components: [deadRow], files: [file] })
+
           let winner = await whoisWinner.calculateWinner(message);
           if (winner === "user") {
             change = "no";

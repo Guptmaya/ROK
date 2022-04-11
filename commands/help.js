@@ -18,7 +18,7 @@ module.exports = {
       `\`${prefix.prefix1}gems \` : Calculates Total Gems\n\n` +
       `\`${prefix.prefix1}goldchest [number of keys]\` : Simulates Gold Chest unlock\n\n` +
       `\`${prefix.prefix1}wheel \` : Simulates spinning wheel of fortune\n\n` +
-      `\*\*\*Game Commands\*\*\*` +
+      `\*\*\*Game Commands\*\*\*\n` +
       `\`${prefix.prefix1}register \` : To register yourself with bot\n\n` +
       `\`${prefix.prefix1}profile \` : To check your profile\n\n` +
       `\`${prefix.prefix1}tutorial \` : To read tutorial\n\n` +

@@ -24,6 +24,7 @@ module.exports = {
             `\n Civilization :  ${value.civilization} ` +
             `\n Battles :  ${value.victory}/${battles} ` +
             `\n Level :  ${target.level} ` +
+            `\n Gems :  ${value.gems} ` +
             `\n Barbarians :  ${value.barbs} \`\`\``)
           .setThumbnail(message.author.displayAvatarURL())
         return message.channel.send({ embeds: [embed] });

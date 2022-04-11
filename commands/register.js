@@ -13,7 +13,7 @@ module.exports = {
     //check whether user exists in database or not
     let UserProfileDetails = await UserProfile.findOne({ userID: message.author.id });
     if (!UserProfileDetails) {
-
+      
       //create schema
       UserProfileDetails = await new UserProfile({
         _id: mongoose.Types.ObjectId(),

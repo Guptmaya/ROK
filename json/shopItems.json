@@ -1,0 +1,9 @@
+{
+   "items": [
+      {
+         "name": "1000 Experience",
+         "desc" : "Adds 1000 experience to your profile",
+         "cost":150
+      }
+   ]
+}

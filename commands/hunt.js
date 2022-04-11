@@ -90,6 +90,7 @@ module.exports = {
               .catch(err => {
                 console.log(err);
               })
+            col.end();
             return;
           } else if (winner === "barb") {
             change = "no";
@@ -100,6 +101,7 @@ module.exports = {
               .setDescription("\`\`\`Failed to hunt the barbarian.\n" +
                 `Tip : Increase your level with bot to boost your attack and health buffs.\`\`\``)
             await curPage.edit({ embeds: [attackEmbed], components: [deadRow], files: [file] })
+            col.end();
             return;
           }
         }
@@ -112,6 +114,7 @@ module.exports = {
             .setThumbnail(barbImage)
             .setDescription("Run the \`r!hunt barb\` to find a new barbarian.")
           await curPage.edit({ embeds: [skippedEmbed], components: [deadRow], files: [file] })
+          col.end();
           return;
         }
 

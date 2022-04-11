@@ -10,15 +10,18 @@ module.exports = {
   async execute(bot, message, args) {
 
     let desc = "";
-      desc = `\`${prefix.prefix1}mge \` : Calculates MGE Points\n\n` +
+      desc = `\`\*\*\*Calculation Commands\*\*\*\n${prefix.prefix1}mge \` : Calculates MGE Points\n\n` +
         `\`${prefix.prefix1}ap \` : Calculates Total Action Points\n\n` +
         `\`${prefix.prefix1}tok \` : Calculates Total Tome of Knowledge\n\n` +
         `\`${prefix.prefix1}rss \` : Calculates Total Resources\n\n` +
         `\`${prefix.prefix1}gems \` : Calculates Total Gems\n\n` +
         `\`${prefix.prefix1}goldchest [number of keys]\` : Simulates Gold Chest unlock\n\n` +
-        `\`${prefix.prefix1}wheel \` : Simulates spinning wheel of fortune\n\n` +
-        `\`${prefix.prefix1}event [Event's Name]\` : Gives information about certain event\n\n` +
-        `\`${prefix.prefix1}eventlist \` : Shows the events list for r!event command\n\n`;
+        `\`${prefix.prefix1}wheel \` : Simulates spinning wheel of fortune\n\n`+
+        `\`Game Commands`+
+        `\`${prefix.prefix1}register \` : To register yourself with bot\n\n`+
+        `\`${prefix.prefix1}profile \` : To check your profile\n\n`+
+        `\`${prefix.prefix1}tutorial \` : To read tutorial\n\n`+
+        `\`${prefix.prefix1}hunt barb\` : To hunt barbarians\n\n`;
    
 
 

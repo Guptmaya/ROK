@@ -1,7 +1,10 @@
 const Discord = require("discord.js");
 const fs = require('fs');
 let logChannel = '917158209305858058';
+const mongoose = require(`./database/mongoose`);
+const mongooseDataPack = require("mongoose");
 const { Client, Intents } = require('discord.js');
+const Levels = require('discord-xp');
 const bot = new Client({
    disableEveryone: true,
    intents: [Intents.FLAGS.GUILDS,
@@ -19,7 +22,9 @@ bot.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const cooldowns = new Discord.Collection();
 
+//When bot is ready
 bot.on("ready", async () => {
+   mongoose.init();
    console.log('ready');
 });
 
@@ -39,10 +44,25 @@ bot.on("messageCreate", async message => {
    let prefix1 = config.prefix1;
    let prefix2 = config.prefix2;
 
+   //bot channel
    let botChannel;
    botChannel = message.guild.channels.cache.find(x => x.id === "927019188562849842");
-
    if (message.author.bot) return;
+   
+   //add xps to user  in database
+   const randomXP = Math.floor(Math.random() * 20) + 15;
+   const hasLeveledUP = await Levels.appendXp(message.author.id, message.guild.id, randomXP);
+   if (hasLeveledUP) {
+      //role award with levels
+      const user = await Levels.fetch(message.author.id, message.guild.id);
+      let titleMessage = `${message.author.tag} has leveled up to Level ${user.level}!`;
+      let levelupEmbed = new Discord.MessageEmbed()
+         .setThumbnail(message.author.displayAvatarURL({ size: 32 }))
+         .setTitle(titleMessage)
+      botChannel.send({ embeds: [levelupEmbed] });
+   }
+
+
    if (!message.content.startsWith(prefix1) && !message.content.startsWith(prefix2)) return;
 
    const args = message.content.slice(prefix1.length).trim().split(/ +/);
@@ -131,7 +151,6 @@ bot.on("messageCreate", async message => {
       message.reply("Issue executing that command!\n Let Uta know bout this error.")
    }
 });
-
 
 bot.login(process.env.token);
 

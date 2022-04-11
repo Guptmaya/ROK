@@ -9,8 +9,10 @@
   "author": "Uta",
   "license": "ISC",
   "dependencies": {
+    "discord-xp": "^1.1.16",
     "discord.js": "^13.3.1",
-    "millify": "^4.0.0"
+    "millify": "^4.0.0",
+    "mongoose": "^6.2.7"
   },
   "engines": {
     "node": ">=16.6.0"

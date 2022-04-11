@@ -1,0 +1,16 @@
+{
+   "commanders": [
+      {
+         "name": "lohar",
+         "speciality":"peacekeeper",
+         "skillL1" :[150,75],
+         "image": "armsTraining.png"
+      },
+      {
+         "name": "sun tzu",
+         "speciality":"infantry",
+         "skillL1" :[200,150],
+         "image": "armsTraining.png"
+      }
+   ]
+}

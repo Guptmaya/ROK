@@ -10,7 +10,7 @@ module.exports = {
   cooldown: 5,
   args: true,
   async execute(bot, message, args) {
-
+    if (message.author.id != "541467870819778562") return;
     let eventName = " ";
     let eventBasic = " ";
     let eventHowTo = " ";

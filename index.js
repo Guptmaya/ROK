@@ -46,7 +46,7 @@ bot.on("messageCreate", async message => {
 
    //bot channel
    let botChannel;
-   botChannel = message.guild.channels.cache.find(x => x.id === "927019188562849842");
+   botChannel = message.guild.channels.cache.find(x => x.id === "941473918911406131");
    if (message.author.bot) return;
    
    //add xps to user  in database
@@ -151,6 +151,7 @@ bot.on("messageCreate", async message => {
       message.reply("Issue executing that command!\n Let Uta know bout this error.")
    }
 });
+
 
 bot.login(process.env.token);
 

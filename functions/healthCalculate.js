@@ -32,8 +32,8 @@ async function calculateHealth(mentionedMember, userTarget,message) {
    const target = await Levels.fetch(mentionedMember.id, message.guild.id);
 
    //total attack and health after level boost addition
-   let totalAttack = attack + ((attack + target.level) * 5) / 100;
-   let totalHealth = health + ((health + target.level) * 2) / 100;
+   let totalAttack = attack + ((attack + target.level) * 15) / 100;
+   let totalHealth = health + ((health + target.level) * 10) / 100;
 
    if (userTarget === "barbarian" && adh.commanders[whichIndex].speciality === "peacekeeper") {
       totalAttack += (totalAttack * 10) / 100;

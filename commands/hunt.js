@@ -72,7 +72,7 @@ module.exports = {
             .setDescription("Attacking Barbarian...")
           await curPage.edit({ embeds: [attacking], components: [deadRow], files: [file] })
 
-          let winner = await whoisWinner.calculateWinner(message);
+          let [winner, barbLevell, barbAttackP, barbHealthP, userAttackP, userHealthP] = await whoisWinner.calculateWinner(message);
           if (winner === "user") {
             change = "no";
             function getRandomArbitrary(min, max) {
@@ -80,11 +80,14 @@ module.exports = {
             }
             let numberOfGems = getRandomArbitrary(50, 100);
             let attackEmbed = new Discord.MessageEmbed()
-              .setTitle("Barbarians")
+              .setTitle("Successful Barbarian Hunt")
               .setColor("GREEN")
               .setThumbnail(barbImage)
-              .setDescription("\`\`\`Successfully hunted the barbarian.\n" +
-                `Rewards : ${numberOfGems} Gems\`\`\``)
+              .setDescription(`\*\*\*STATS\*\*\*\n` +
+                `\`\`\`Barbarian Level : ${barbLevell}\n` +
+                `Barbarian's Attack:Health : ${barbAttackP}:${barbHealthP}\n` +
+                `Your Attack:Health : ${userAttackP}:${userHealthP}\`\`\`\n` +
+                `\*\*\*Rewards : \*\*\*<:Gem:962910363383365652> ${numberOfGems} Gems`)
             await curPage.edit({ embeds: [attackEmbed], components: [deadRow], files: [file] })
             await UserProfile.findOneAndUpdate({ userID: message.author.id }, { barbs: UserProfileDetails.barbs + 1, gems: UserProfileDetails.gems + numberOfGems })
               .catch(err => {
@@ -96,11 +99,14 @@ module.exports = {
           } else if (winner === "barb") {
             change = "no";
             let attackEmbed = new Discord.MessageEmbed()
-              .setTitle("Barbarians")
+              .setTitle("Barbarians Hunt Failed")
               .setColor("RED")
               .setThumbnail(barbImage)
-              .setDescription("\`\`\`Failed to hunt the barbarian.\n" +
-                `Tip : Increase your level with bot to boost your attack and health buffs.\`\`\``)
+              .setDescription(`\*\*\*STATS\*\*\*\n` +
+                `\`\`\`Barbarian Level : ${barbLevell}\n` +
+                `Barbarian's Attack:Health : ${barbAttackP}:${barbHealthP}\n` +
+                `Your Attack:Health : ${userAttackP}:${userHealthP}\`\`\``)
+              .setFooter("Tip : Increase your level with bot to boost your attack and health buffs.")
             await curPage.edit({ embeds: [attackEmbed], components: [deadRow], files: [file] })
             col.stop();
             return;

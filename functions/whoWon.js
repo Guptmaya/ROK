@@ -10,20 +10,24 @@ async function calculateWinner(msg) {
       return Math.floor(Math.random() * (max - min) + min);
    }
    let barbChoosen = getRandomArbitrary(0, 5);
-   console.log(barbChoosen);
+   let barbLevel = barbStats.barbs[barbChoosen].level;
+   let barbAttack = barbStats.barbs[barbChoosen].attack;
+   let barbHealth = barbStats.barbs[barbChoosen].health;
+   console.log("barbarian choosen " + barbAttack + " " + barbHealth);
+
    //get user's att and health
    let userTotalAttack = await userAttack.calculateAdh(msg.author, "barbarian", msg);
    let userTotalHealth = await userHealth.calculateHealth(msg.author, "barbarian", msg);
-   console.log(userTotalAttack);
-   console.log(userTotalHealth);
+   console.log("User's Attack " + userTotalAttack);
+   console.log("User's Health " + userTotalHealth);
 
    //get att-health on both parts
-   let userAttackOnBarb = userTotalAttack - barbStats.barbs[barbChoosen].health;
-   let barbAttackOnUser = barbStats.barbs[barbChoosen].attack - userTotalHealth;
-   console.log(userAttackOnBarb);
-   console.log(barbAttackOnUser);
+   let userAttackOnBarb = userTotalAttack - barbHealth;
+   let barbAttackOnUser = barbAttack - userTotalHealth;
+   console.log("user.A -> Barb.H " + userAttackOnBarb);
+   console.log("barb.A -> user.H " + barbAttackOnUser);
 
-   if (userAttackOnBarb > barbAttackOnUser ) {
+   if (userAttackOnBarb > barbAttackOnUser) {
       whoWon = "user";
       console.log("user")
    } else {
@@ -31,6 +35,6 @@ async function calculateWinner(msg) {
       console.log("barb")
    }
 
-   return whoWon;
+   return [whoWon,barbLevel,Math.floor(barbAttack),Math.floor(barbHealth),Math.floor(userTotalAttack),Math.floor(userTotalHealth)];
 }
 module.exports = { calculateWinner }

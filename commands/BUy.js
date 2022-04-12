@@ -12,7 +12,7 @@ module.exports = {
   args: true,
   async execute(bot, message, args) {
 
-    let embed = new Discord.MessageEmbed()
+    let mainEmbed = new Discord.MessageEmbed()
       .setTitle("Buy")
       .setColor("GREEN")
 
@@ -55,12 +55,12 @@ module.exports = {
 
       }
     } else {
-      embed.color("RED")
+      //mainEmbed.color("RED")
       description = "You do not have enough <:Gem:962910363383365652> gems."
     }
 
-    embed.setDescription(description)
-    message.channel.send({ embeds: [embed] });
+    mainEmbed.setDescription(description)
+    message.channel.send({ embeds: [mainEmbed] });
 
   },
 };

@@ -78,7 +78,7 @@ module.exports = {
             function getRandomArbitrary(min, max) {
               return Math.floor(Math.random() * (max - min) + min);
             }
-            let numberOfGems = getRandomArbitrary(50, 100);
+            let numberOfGems = getRandomArbitrary(25, 50);
             let attackEmbed = new Discord.MessageEmbed()
               .setTitle("Successful Barbarian Hunt")
               .setColor("GREEN")

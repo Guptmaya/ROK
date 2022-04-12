@@ -23,7 +23,7 @@ async function calculateWinner(msg) {
    console.log(userAttackOnBarb);
    console.log(barbAttackOnUser);
 
-   if (userAttackOnBarb - barbAttackOnUser > 0) {
+   if (userAttackOnBarb > barbAttackOnUser ) {
       whoWon = "user";
       console.log("user")
    } else {

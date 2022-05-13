@@ -5,6 +5,7 @@ const mongoose = require(`./database/mongoose`);
 const mongooseDataPack = require("mongoose");
 const { Client, Intents } = require('discord.js');
 const Levels = require('discord-xp');
+const usersProfile = require("./schemas/userProfile")
 const bot = new Client({
    disableEveryone: true,
    intents: [Intents.FLAGS.GUILDS,
@@ -40,26 +41,43 @@ for (const files of commandFiles) {
 
 //for commands
 bot.on("messageCreate", async message => {
-   //if (message.author.id != "541467870819778562") return;
+   if (message.author.id != "541467870819778562") return;
    let prefix1 = config.prefix1;
    let prefix2 = config.prefix2;
 
    //bot channel
    let botChannel;
    botChannel = message.guild.channels.cache.find(x => x.id === "941473918911406131");
+   let levelUpLogOfNetflix = message.guild.channels.cache.find(x => x.id === "974528030133334046");
    if (message.author.bot) return;
-   
+
+   //create user's profile with bot
+   let userDetails = await usersProfile.findOne({ userID: message.author.id })
+   //if user found
+   if (!userDetails) {
+      userDetails = await new usersProfile({
+         _id: mongooseDataPack.Types.ObjectId(),
+         wallet: 0,
+         bank: 0
+      });
+      await userDetails.save()
+         .catch(err => console.log(err))
+   }
+
+
+
    //add xps to user  in database
    const randomXP = Math.floor(Math.random() * 20) + 15;
-   const hasLeveledUP = await Levels.appendXp(message.author.id, message.guild.id, randomXP);
+   const hasLeveledUP = await Levels.appendXp(message.author.id, "10000", randomXP);
    if (hasLeveledUP) {
       //role award with levels
-      const user = await Levels.fetch(message.author.id, message.guild.id);
+      const user = await Levels.fetch(message.author.id, "10000");
       let titleMessage = `${message.author.tag} has leveled up to Level ${user.level}!`;
       let levelupEmbed = new Discord.MessageEmbed()
          .setThumbnail(message.author.displayAvatarURL({ size: 32 }))
          .setTitle(titleMessage)
-      botChannel.send({ embeds: [levelupEmbed] });
+         //974528030133334046
+         levelUpLogOfNetflix.send({ embeds: [levelupEmbed] });
    }
 
 

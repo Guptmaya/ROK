@@ -2,8 +2,13 @@
    "items": [
       {
          "name": "1000 Experience",
-         "desc" : "Adds 1000 experience to your profile",
-         "cost":150
+         "desc": "Adds 1000 experience to your profile",
+         "cost": 150
+      },
+      {
+         "name": "1000 Experience",
+         "desc": "Adds 1000 experience to your profile",
+         "cost": 150
       }
    ]
 }
